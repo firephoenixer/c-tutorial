@@ -23,7 +23,12 @@ git push :
 
     Seems to update the local changes to Github.
 
+git pull:
 
+    Seems to pull the Github to local repository.
+
+
+    
 
 
 
