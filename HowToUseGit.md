@@ -6,6 +6,7 @@ If there is any mistake you found in this file, please feel free to set a pull r
 Happy coding! Let's built tommorow together.
 
 ## How to show files under the local dir:
+For details, please google.
 
     git status
 
