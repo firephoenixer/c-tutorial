@@ -1,3 +1,10 @@
 # When git, to ignore specified kind files. Then you may can use "git add ." command freely.
+
+# Some special files, don't need to transit.
 *.class
 *.exe
+
+# Package Files #
+*.jar
+*.war
+*.ear
