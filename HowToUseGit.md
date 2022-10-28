@@ -5,9 +5,10 @@ If there is any mistake you found in this file, please feel free to set a pull r
 
 Happy coding! Let's built tommorow together.
 
-git status :
+## How to show files under the local dir:
 
-    Seems to show files under the local dir.
+    git status
+
 
 git add :
 
