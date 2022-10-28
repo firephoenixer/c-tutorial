@@ -14,7 +14,7 @@ For details, please google.
 ## How to add some files under watching:
 ### Add all files:
     git add .
-#### Add specified file:
+### Add specified file:
     git add <filename>
 
 
