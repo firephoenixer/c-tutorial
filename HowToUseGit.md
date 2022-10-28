@@ -11,11 +11,12 @@ For details, please google.
     git status
 
 
-git add :
+## How to add some files under watching:
+Add all files:
+    git add .
+Add specified file:
+    git add <filename>
 
-    git add . : seems to add all the files under watch.
-
-    git add <filename> : seems to add select file to under watch.
 
 git commit -m "New file of ulitity for Git" -m "I create this file to help beginner to use Git" :
 
