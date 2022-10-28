@@ -28,6 +28,7 @@ Happy coding! Let's built tommorow together.
 ### Sometimes the Github's repository has changed, then you may need a sync. 
     git pull
 
+## How to
 
 
     
