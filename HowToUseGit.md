@@ -88,8 +88,10 @@ Press "q" quit the log file.
 
 ## How to return to history.
 Return with "M" sign.(the changes keeped in editer)
+
     git reset <hash-code>
 Return without "M" sign.(the changes won't keeped in editer)
+
     git reset --hard <hash-code>
 
 ## You can use fork on Github, then you will have full access of the repository.
