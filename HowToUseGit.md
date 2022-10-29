@@ -55,5 +55,13 @@ Check remote origin.
     git checkout <main>
 
 
+## How to show the different of two branch in local.
+    git diff <other-repository>
+    
+## How to merge branches in local.
+But usually only useful when you are the master of the Github repository.
+    git merge
 
+## How to push a change to branches to Github, if not exsited then create a new branch.
+    git push -u origin <same-name>
 
