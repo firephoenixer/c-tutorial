@@ -26,6 +26,8 @@ Happy coding! Let's built tommorow together.
     git push
 ### Push to specified repository/branch.
     git push origin <master>
+set default push.
+    git push -u origin <master>
 
 ## How to pull the changes of Github to local repository.
 ### Sometimes the Github's repository has changed, then you may need a sync. 
@@ -34,9 +36,23 @@ Happy coding! Let's built tommorow together.
 ## How to copy a new repository from Github to local.
     git clone "HTTPadd"
 
+## Trun a new dir into a git repository.
+    git init
 
+## How to transit a new repository to Github at the first time.
+You need create some name repository on Github first.
+    git remote add origin "HTTPadd"
+Check remote origin.
+    git remote -v
+
+## How to show branches in local.
+    git branch
+
+## How to create a new branch in local.
+    git checkout -b <feature-12345-instruction>
     
-
+## How to switch branches in local.
+    git checkout <main>
 
 
 
