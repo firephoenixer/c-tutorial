@@ -60,8 +60,37 @@ Check remote origin.
     
 ## How to merge branches in local.
 But usually only useful when you are the master of the Github repository.
-    git merge
+    git merge <object-name>
 
 ## How to push a change to branches to Github, if not exsited then create a new branch.
     git push -u origin <same-name>
 Then you can apply a pull request on Github.
+
+## How to delete a branch in local.
+    git branch -d <name>
+
+## If no new file created, how to add and commit in one line.
+    git commit -am "title"
+
+## If there is a conflict in merge, then you should deal the conflict in editer frist.
+
+## How to reset "add" status.
+    git reset
+
+## How to reset a "commit" command.
+    git reset HEAD~1
+
+## Show command log.
+    git log
+Then we will get some history inclue hash code.
+
+Press "q" quit the log file.
+
+## How to return to history.
+Return with "M" sign.(the changes keeped in editer)
+    git reset <hash-code>
+Return without "M" sign.(the changes won't keeped in editer)
+    git reset --hard <hash-code>
+
+## You can use fork on Github, then you will have full access of the repository.
+When you finsh your local work, Then you can do PR to the original repository if you wish.
