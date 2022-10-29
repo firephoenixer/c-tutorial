@@ -48,8 +48,11 @@ Check remote origin.
 ## How to show branches in local.
     git branch
 
+## How to create a new branch in local.
+    git checkout -b <feature-12345-instruction>
     
-
+## How to switch branches in local.
+    git checkout <main>
 
 
 
