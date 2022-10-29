@@ -12,18 +12,20 @@ Happy coding! Let's built tommorow together.
     git status
 
 ## How to add some files under watching:
-### Add or track or change all files:
+### Add or track or change all files to commit:
     git add .
 
-### Add or track or change  specified file:
+### Add or track or change  specified file to commit:
     git add <filename>
 
 ## How to comfirm changes to local repository.
     git commit -m "Title" -m "Content" :
 
 ## How to update the local changes to Github.
+### Push to default repository.
     git push
-    git push origin master
+### Push to specified repository/branch.
+    git push origin <master>
 
 ## How to pull the changes of Github to local repository.
 ### Sometimes the Github's repository has changed, then you may need a sync. 
