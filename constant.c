@@ -22,7 +22,7 @@ int main()
     compare(5, 6);                // why I feel it also make things more compleximent sometimes.
     compare(7, 6);
     printf("5*6 + 7 = %d\n", 5*add(6,7));  // 37, not 5*13
-    printf("Date: %s\n", __DATE__);
+    printf("Date: %s\n", __DATE__);  // It seems __DATE__ is build-in Define.
     printf("Time: %s\n", __TIME__);
 
 
