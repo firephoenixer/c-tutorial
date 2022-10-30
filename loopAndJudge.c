@@ -3,6 +3,7 @@
 #include <stdbool.h>
 const int aNum = 77;  // This a int number for user to guess, const declare it can't be changed later.
 
+
 int main()
 {
     int times = 0;  // This variable record how many time user have guessed.
