@@ -14,7 +14,7 @@ int main()
    // MAXCONTAIN = 30;
    // can't do this, beacause it equal to:   20 = 30
 
-   const int SLEEP_HOUR = 22;  // can't be changed anymore either.
+   const int SLEEP_HOUR = 22;  // can't be changed anymore either. const makes it read-only.
 
     printf("%.5f\n", PI);
     printf("%d\n", SLEEP_HOUR);
