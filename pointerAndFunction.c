@@ -34,6 +34,7 @@ void showDiff(int iNum, int *pNum)
 {
      iNum++;
      (*pNum)++;  // caution: Seems ++ will execute first if no brace!!!
+     // anInt acttually not accessiable here, it means iNum
      printf("Inside function: anInt=%d, otherInt=%d\n", iNum, *pNum);
      return;
 }
