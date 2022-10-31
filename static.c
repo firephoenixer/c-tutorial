@@ -1,7 +1,6 @@
 #include <stdio.h>
 // use "size a.exe" can see the execuble file's size in different segment of the RAM.
 static int iTest, iTest2;
-static int iTest3 = 1;
 
 
 static int iTest5;       // seems in bss segment
@@ -25,15 +24,14 @@ void foo()
 int main()
 {
     int i;
-    int iTest4;
-    iTest4 = 2;
+
     printf("Address of iTest5: %x\n", &iTest5);
     static int iTest5;   // seems new static variable in bss segment
     printf("Address of iTest5: %x\n", &iTest5);
     for (i = 0; i < 3; ++i)
         foo();
     printf("%d%d\n", iTest,iTest2);
-    printf("%d\n", iTest3);
+
     printf("%d\n", iTest5);    // 31 or 0? 0, Beacause iTest5 is a new bss segment variable.
     iTest5 = 50;
     printf("Address of iTest5: %x\n", &iTest5);
