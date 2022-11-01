@@ -96,3 +96,13 @@ Return without "M" sign.(the changes won't keeped in editer)
 
 ## You can use fork on Github, then you will have full access of the repository.
 When you finsh your local work, Then you can do PR to the original repository if you wish.
+
+## git fetch is different of git pull
+git fetch seems not merge when getting files and branches form the Github.
+    git fetch
+
+
+
+
+
+
