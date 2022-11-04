@@ -3,6 +3,8 @@
 # Some special files, don't need to transit.
 *.class
 *.exe
+*.json
+
 
 # Package Files #
 *.jar
