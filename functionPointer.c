@@ -15,15 +15,24 @@ int main(){
 
     // a function pointer
     float (*pSum) (float, float) = sum;  // notice: we use (*pSum) make sure pSum a pionter, otherwise pSum will 
-                                         // associate with (float, float) witch makes no sense!!!
+                                         // associate with (float, float) witch makes no sense!!!                                        
     printf("%f\n", pSum(4,2));
+    printf("\n");
+
+    float (*pMin) (float, float) = &min;  // use & + name, is the same to above
+    printf("%f\n", pMin(4,2));
+    printf("\n");
+
+    float (*pMul) (float, float);  
+    pMul = &mul;
+    printf("%f\n", pMul(4,2));
     printf("\n");
 
     // When function pointers useful
     float (*pFuns[4]) (float, float) = {sum, min, mul, dev};  // (*pFuns[4]) means array content pointers
     for(int i = 0; i < 4; i++)  printf("%f\n", pFuns[i](4, 2));
 
-    // function pointers make programme more flexible
+    // function pointers may make programme more flexible
 
 
     return 0;
