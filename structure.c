@@ -1,6 +1,9 @@
 #include <stdio.h>
 #include <string.h>
 // This is a C example for struct.
+// Notice: different machine may use different way to pack the struct to fit processor's circle running.
+//         this ways can be switch by "#pragma pack(1)", to save memory space.
+
 struct Books {
    char  *title;
    char  author[50];
