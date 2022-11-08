@@ -14,10 +14,10 @@ int main(){
     for binary files mode: rb, wb, ab, rb+, r+b, wb+, w+b, ab+, a+b
     */
 
-    fTxt = fopen("/src/test.txt", "w+");
+    fTxt = fopen("./src/test.txt", "w+");
     // These two functions actually the same.
-    fprintf(fTxt, "This line1.\n");
-    fputs("This is line2.\n", fTxt);
+    fprintf(fTxt, "This line01.\n");
+    fputs("This is line02.\n", fTxt);
 
     fclose(fTxt);
 
