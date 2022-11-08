@@ -16,7 +16,7 @@ int main(){
 
     fTxt = fopen("./src/test.txt", "w+");
     // These two functions actually the same.
-    fprintf(fTxt, "This line01.\n");
+    fprintf(fTxt, "This is line01.\n");
     fputs("This is line02.\n", fTxt);
 
     fclose(fTxt);
