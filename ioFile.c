@@ -21,9 +21,29 @@ int main(){
 
     fclose(fTxt);
 
+    // Then we try to read the file just created
+    FILE *fpRead;
+    char buff[255] = {0};
+    fpRead = fopen("./src/test.txt", "r");
+    fscanf(fpRead, "%s", buff);  // seems stop when seen spacebar or \n , not included spacebar or \n
+    printf("1 : %s\n", buff);
 
-    printf("Hello world!");
+    fgets(buff, 255, fpRead);  // seems stop when seen \n, inclued \n
+    printf("2 : %s\n", buff);
+
+    fgets(buff, 255, fpRead);
+    printf("3 : %s\n", buff);
+
+    fclose(fpRead);
     return 0;
+
+    /*Binary files are usually used for storage of prgramme data.
+      for example arrays or structures.
+      if programme running next time, can reload some data easily.
+      
+      size_t fread(void *ptr, size_t size_of_elements, size_t number_of_elements, FILE *a_file);
+      size_t fwrite(const void *ptr, size_t size_of_elements, size_t number_of_elements, FILE *a_file);
+    */ 
 
 }
 
