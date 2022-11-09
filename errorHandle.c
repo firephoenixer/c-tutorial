@@ -8,7 +8,7 @@ extern int errno;  // use errno in errno.h
 
 int main () {
 
-   FILE * pf;
+   FILE *pf;
    int errnum;
    pf = fopen ("unexist.txt", "rb");  // make a file open error
 	
