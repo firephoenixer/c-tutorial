@@ -3,7 +3,7 @@
 // In this file, store support fanctions for the main programme
 
 // show n players' hands to the screen
-void show_hands(char *pArr[2][2], int n)
+void show_hands(char pArr[2][2][2], int n)
 {
     // pArr[n][2][2], n=number of players
     for(int i = 0; i < n; i++)
