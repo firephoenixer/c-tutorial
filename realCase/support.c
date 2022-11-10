@@ -25,7 +25,15 @@ void check_allo(void *pAdd)
     return;
 }
 
+// read hands from hands.txt to a heal memory, return hands number copyed.
+unsigned int read_hands(char *pHeal, char *pStrFile)
+{
+    unsigned int n = 0;
 
+
+    printf("Hands read success: %d", n);
+    return n;
+}
 
 
 
