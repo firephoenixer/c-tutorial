@@ -13,6 +13,7 @@ void check_allo(void *pAdd)
 
 int main()
 {
+    // allocate 100 char with initialized by 0
     char *pTitle = calloc(100, sizeof(char));  
     check_allo(pTitle);
     int a;
