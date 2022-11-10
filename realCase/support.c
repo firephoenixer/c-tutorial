@@ -15,6 +15,15 @@ void show_hands(char (*pArr)[2][2], int n)
     return;
 }
 
+// check if the memory allocate success
+void check_allo(void *pAdd)
+{
+    if(pAdd == NULL) 
+        printf("Allocate memory FAILED!\n ");
+    else
+        printf("Allocate address: %p\n", pAdd);
+    return;
+}
 
 
 
