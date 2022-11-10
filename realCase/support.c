@@ -6,6 +6,9 @@
 
 // In this file, store support fanctions for the main programme
 
+extern char convers_card(char a);
+
+
 // show n players' hands to the screen
 void show_hands(char (*pArr)[2][2], int n)
 {
@@ -13,7 +16,7 @@ void show_hands(char (*pArr)[2][2], int n)
     for(int i = 0; i < n; i++)
     {
         printf("player %d's first card: %d%d, second card: %d%d\n", 
-                i, pArr[0][0][0], pArr[0][0][1],pArr[0][1][0],pArr[0][1][1]);
+                i, pArr[i][0][0], pArr[i][0][1],pArr[i][1][0],pArr[i][1][1]);
     }
 
     return;
@@ -46,9 +49,31 @@ unsigned int read_hands(char *pHeal, char *pStrFile)
    }
 
     char buff[10] = {0};  // to store a hand temporily
+    char tempHand[2][2][2] = {0};
     // get hands circually
-    fgets(buff, 10, fTxt);  // seems stop when seen \n, inclued \n
-    printf("1 : %s\n", buff);
+    while(!feof(fTxt))
+    {
+        
+        fgets(buff, 10, fTxt);  // seems stop when seen \n, inclued \n
+        if(strlen(buff) == 9)
+        {
+            n++;
+            printf("Hand %d : %s\n", n, buff);
+            // mapping the text card to char card
+            tempHand[0][0][0] = convers_card(buff[0]); tempHand[0][0][1] = convers_card(buff[1]);
+            tempHand[0][1][0] = convers_card(buff[2]); tempHand[0][1][1] = convers_card(buff[3]);
+            tempHand[1][0][0] = convers_card(buff[5]); tempHand[1][0][1] = convers_card(buff[6]);
+            tempHand[1][1][0] = convers_card(buff[7]); tempHand[1][1][1] = convers_card(buff[8]);
+            // printf("%d%d%d%d%d%d%d%d\n", tempHand[0][0][0], tempHand[0][0][1],tempHand[0][1][0], 
+            // tempHand[0][1][1], tempHand[1][0][0],tempHand[1][0][1],tempHand[1][1][0], tempHand[1][1][1]);
+            show_hands(tempHand, 2);
+            
+
+        }
+        
+    }
+    
+
 
 
     fclose(fTxt);
@@ -57,8 +82,30 @@ unsigned int read_hands(char *pHeal, char *pStrFile)
 }
 
 
-
-
+// receive a char return the piont it presented, return 0 if error card
+char convers_card(char a)
+{
+    switch (a)
+    {
+    case '0':  return 0;
+    case '1':  return 1;
+    case '2':  return 2;
+    case '3':  return 3;
+    case '4':  return 4;
+    case '5':  return 5;
+    case '6':  return 6;
+    case '7':  return 7;
+    case '8':  return 8;
+    case '9':  return 9;
+    case 'T':  return 10;
+    case 'J':  return 11;
+    case 'Q':  return 12;
+    case 'K':  return 13;
+    case 'A':  return 14;
+    default:  return 0;
+    }
+    return 0;
+}
 
 
 
