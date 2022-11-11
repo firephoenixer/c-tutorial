@@ -57,8 +57,6 @@ unsigned int read_hands(char *pHeal, char *pStrFile)
         fgets(buff, 10, fTxt);  // seems stop when seen \n, inclued \n
         if(strlen(buff) == 9)
         {
-            n++;
-            printf("Hand %d : %s\n", n, buff);
             // mapping the text card to char card
             tempHand[0][0][0] = convers_card(buff[0]); tempHand[0][0][1] = convers_card(buff[1]);
             tempHand[0][1][0] = convers_card(buff[2]); tempHand[0][1][1] = convers_card(buff[3]);
@@ -66,15 +64,30 @@ unsigned int read_hands(char *pHeal, char *pStrFile)
             tempHand[1][1][0] = convers_card(buff[7]); tempHand[1][1][1] = convers_card(buff[8]);
             // printf("%d%d%d%d%d%d%d%d\n", tempHand[0][0][0], tempHand[0][0][1],tempHand[0][1][0], 
             // tempHand[0][1][1], tempHand[1][0][0],tempHand[1][0][1],tempHand[1][1][0], tempHand[1][1][1]);
-            show_hands(tempHand, 2);
             
-
+            // check hand illegal
+            if(!(2<=tempHand[0][0][0]<=14)) continue;
+            if(!(2<=tempHand[0][1][0]<=14)) continue;
+            if(!(2<=tempHand[1][0][0]<=14)) continue;
+            if(!(2<=tempHand[1][1][0]<=14)) continue;
+            if(!(0<=tempHand[0][0][1]<=3)) continue;
+            if(!(0<=tempHand[0][1][1]<=3)) continue;
+            if(!(0<=tempHand[1][0][1]<=3)) continue;
+            if(!(0<=tempHand[1][1][1]<=3)) continue;
+            // make sure no same card
+            if(memcmp(tempHand[0][0], tempHand[0][1], 2) == 0) continue;  
+            if(memcmp(tempHand[0][0], tempHand[1][0], 2) == 0) continue; 
+            if(memcmp(tempHand[0][0], tempHand[1][1], 2) == 0) continue; 
+            if(memcmp(tempHand[0][1], tempHand[1][0], 2) == 0) continue; 
+            if(memcmp(tempHand[0][1], tempHand[1][1], 2) == 0) continue; 
+            if(memcmp(tempHand[1][0], tempHand[1][1], 2) == 0) continue; 
+            n++;
+            // printf("Hand illegal %d : %s\n", n, buff);
+            // show_hands(tempHand, 2);
         }
         
     }
     
-
-
 
     fclose(fTxt);
     printf("Hands read success: %d", n);
