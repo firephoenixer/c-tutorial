@@ -84,8 +84,10 @@ unsigned int read_hands(char *pHeal, char *pStrFile)
             n++;
             // printf("Hand illegal %d : %s\n", n, buff);
             // show_hands(tempHand, 2);
-        }
-        
+
+            // save a hand to the heal memory
+            memcpy(pHeal + 8*(n-1), tempHand, 8);
+        }      
     }
     
 
