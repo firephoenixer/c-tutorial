@@ -22,16 +22,22 @@ int main(){
     // read the hands to the heal memory just allocated
     int nHands = read_hands(pHands, "hands.txt");
 
+    // reallocate the heal to save omit the idel space
+    pHands = realloc(pHands, sizeof(char)*8*nHands);
+
     // check the hands in the heal
     char (*paHands)[2][2][2] = (void *)pHands;
     for(int i = 0; i < nHands; i++)
     {
         printf("The %dst hand:\n", i);
         show_hands(paHands[0], 2);
+        // the core business function
+
+
+
         paHands++;
     }
 
-    // reallocate the heal to save omit the idel space
     
     
 
