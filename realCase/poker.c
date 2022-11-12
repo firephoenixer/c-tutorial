@@ -247,8 +247,13 @@ void calutate_strength(char hand[2][2], char puCards[5][2], char sth[6])
     // copy all cards together
     memcpy(allCards[0], hand[0], 2*2);
     memcpy(allCards[2], puCards[0], 5*2);
+    // printf("show hand: %d%d %d%d\n", allCards[0][0], allCards[0][1],allCards[1][0],allCards[1][1]);
+    // printf("show public: %d%d %d%d\n", allCards[2][0], allCards[2][1],allCards[3][0],allCards[3][1]);
+    // printf("show public: %d%d %d%d\n", allCards[4][0], allCards[4][1],allCards[5][0],allCards[5][1]);
+    // printf("show public: %d%d \n", allCards[6][0], allCards[6][1]);
     
     // do 7-5 calculation
+    n1 = 0; n2 = 1; n3 = 2; n4 = 3; n5 = 4;  // MUST reset them, because they are static in the memory!!!
     do{
         // set one combine
         memcpy(oneCom[0], allCards[n1], 2);
