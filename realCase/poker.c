@@ -68,11 +68,11 @@ int re_set7_5()
 }
 
 // order the five cards by descending
-void order_ascending()
+void order_descending()
 {
     int i=0, j=1;
-    for(i=0; i<3; i++)
-        for(j=i+1; j<4; j++)
+    for(i=0; i<=3; i++)
+        for(j=i+1; j<=4; j++)
             {
                 if(oneCom[j][0] > oneCom[i][0])
                     {
@@ -84,37 +84,191 @@ void order_ascending()
     return;
 }
 
-// calculate the 5 cards' strength, if stronger than sth[6], then replace it.
+
+
+// calculate the 5 cards' strength
 void a_calc()
 {
     // order the five cards by descending
-    order_ascending();
+    order_descending();
 
     // now, how to judge the strength of this combine?
-
-
-
+    if(oneCom[0][1]!=oneCom[1][1]||oneCom[0][1]!=oneCom[2][1]||oneCom[0][1]!=oneCom[3][1]||oneCom[0][1]!=oneCom[4][1])
+    { // not the same color (M)
+     if(oneCom[0][0]==oneCom[1][0]||oneCom[1][0]==oneCom[2][0]||oneCom[2][0]==oneCom[3][0]||oneCom[3][0]==oneCom[4][0])
+     {// must have same card, (at least one pair)
+       // four of a kind
+       if(oneCom[0][0]==oneCom[3][0]) {t_sth[0]=7; t_sth[1]=oneCom[3][0]; t_sth[2]=oneCom[4][0]; return;}
+       if(oneCom[1][0]==oneCom[4][0]) {t_sth[0]=7; t_sth[1]=oneCom[4][0]; t_sth[2]=oneCom[0][0]; return;}
+       // full horse 
+       if(oneCom[0][0]==oneCom[2][0]&&oneCom[3][0]==oneCom[4][0])
+       {t_sth[0]=6; t_sth[1]=oneCom[2][0]; t_sth[2]=oneCom[4][0]; return;}
+       if(oneCom[0][0]==oneCom[1][0]&&oneCom[2][0]==oneCom[4][0])
+       {t_sth[0]=6; t_sth[1]=oneCom[4][0]; t_sth[2]=oneCom[0][0]; return;}
+       // three of a kind
+       if(oneCom[0][0]==oneCom[2][0])
+       {t_sth[0]=3; t_sth[1]=oneCom[2][0]; t_sth[2]=oneCom[3][0];  t_sth[3]=oneCom[4][0];return;}
+       if(oneCom[1][0]==oneCom[3][0])
+       {t_sth[0]=3; t_sth[1]=oneCom[3][0]; t_sth[2]=oneCom[0][0];  t_sth[3]=oneCom[4][0];return;}
+       if(oneCom[2][0]==oneCom[4][0])
+       {t_sth[0]=3; t_sth[1]=oneCom[4][0]; t_sth[2]=oneCom[0][0];  t_sth[3]=oneCom[1][0];return;}
+       // two pairs
+       if(oneCom[0][0]==oneCom[1][0]&&oneCom[2][0]==oneCom[3][0])
+       {t_sth[0]=2; t_sth[1]=oneCom[1][0]; t_sth[2]=oneCom[3][0];  t_sth[3]=oneCom[4][0];return;}
+       if(oneCom[0][0]==oneCom[1][0]&&oneCom[3][0]==oneCom[4][0])
+       {t_sth[0]=2; t_sth[1]=oneCom[1][0]; t_sth[2]=oneCom[4][0];  t_sth[3]=oneCom[2][0];return;}
+       if(oneCom[1][0]==oneCom[2][0]&&oneCom[3][0]==oneCom[4][0])
+       {t_sth[0]=2; t_sth[1]=oneCom[2][0]; t_sth[2]=oneCom[4][0];  t_sth[3]=oneCom[0][0];return;}
+       // one pair
+       if(oneCom[0][0]==oneCom[1][0])
+       {t_sth[0]=1; t_sth[1]=oneCom[1][0]; t_sth[2]=oneCom[2][0];  t_sth[3]=oneCom[3][0];t_sth[4]=oneCom[4][0];return;}
+       if(oneCom[1][0]==oneCom[2][0])
+       {t_sth[0]=1; t_sth[1]=oneCom[2][0]; t_sth[2]=oneCom[0][0];  t_sth[3]=oneCom[3][0];t_sth[4]=oneCom[4][0];return;}
+       if(oneCom[2][0]==oneCom[3][0])
+       {t_sth[0]=1; t_sth[1]=oneCom[3][0]; t_sth[2]=oneCom[0][0];  t_sth[3]=oneCom[1][0];t_sth[4]=oneCom[4][0];return;}
+       if(oneCom[3][0]==oneCom[4][0])
+       {t_sth[0]=1; t_sth[1]=oneCom[4][0]; t_sth[2]=oneCom[0][0];  t_sth[3]=oneCom[1][0];t_sth[4]=oneCom[2][0];return;}
+     }
+     else // do not have same card (M)
+     {
+      // straight
+      if(oneCom[0][0]==14&&oneCom[1][0]==5) {t_sth[0]=4; t_sth[1]=oneCom[1][0]; return;}
+      if(oneCom[0][0]-oneCom[4][0]==4) {t_sth[0]=4; t_sth[1]=oneCom[0][0]; return;}
+      // all left are high card
+      t_sth[0]=0; t_sth[1]=oneCom[0][0]; t_sth[2]=oneCom[1][0]; t_sth[3]=oneCom[2][0]; 
+      t_sth[4]=oneCom[3][0]; t_sth[5]=oneCom[4][0]; return;
+     }
+    }
+    else  // all the same color
+    {
+     // straight flush
+      if(oneCom[0][0]==14&&oneCom[1][0]==5) {t_sth[0]=8; t_sth[1]=oneCom[1][0]; return;}
+      if(oneCom[0][0]-oneCom[4][0]==4) {t_sth[0]=8; t_sth[1]=oneCom[0][0]; return;}
+      // flush
+      t_sth[0]=5; t_sth[1]=oneCom[0][0]; t_sth[2]=oneCom[1][0]; t_sth[3]=oneCom[2][0]; 
+      t_sth[4]=oneCom[3][0]; t_sth[5]=oneCom[4][0]; return;
+    }
+    // error if execute here
     return;
+}
+
+// compare two hands, if hand1 is stronger retrun 1 , equeal 0, less -1
+int compare(char sth1[6], char sth2[6])
+{
+    if(sth1[0]>sth2[0]) return 1;
+    if(sth1[0]<sth2[0]) return -1;
+    // to here, means they are in the same range
+    switch (sth1[0])
+    {
+    case 8:  // flash straight
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        break;  // break in important!!!
+    case 7:  // four of a kind
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        if(sth1[2]>sth2[2]) return 1;
+        if(sth1[2]<sth2[2]) return -1;
+        break;
+    case 6:  // full horse
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        if(sth1[2]>sth2[2]) return 1;
+        if(sth1[2]<sth2[2]) return -1;
+        break;
+    case 5:  // flash
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        if(sth1[2]>sth2[2]) return 1;
+        if(sth1[2]<sth2[2]) return -1;
+        if(sth1[3]>sth2[3]) return 1;
+        if(sth1[3]<sth2[3]) return -1;
+        if(sth1[4]>sth2[4]) return 1;
+        if(sth1[4]<sth2[4]) return -1;
+        if(sth1[5]>sth2[5]) return 1;
+        if(sth1[5]<sth2[5]) return -1;
+        break;
+    case 4:  // straight
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        break;
+    case 3: // three of a kind
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        if(sth1[2]>sth2[2]) return 1;
+        if(sth1[2]<sth2[2]) return -1;
+        if(sth1[3]>sth2[3]) return 1;
+        if(sth1[3]<sth2[3]) return -1;
+        break;
+    case 2:  // two pairs
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        if(sth1[2]>sth2[2]) return 1;
+        if(sth1[2]<sth2[2]) return -1;
+        if(sth1[3]>sth2[3]) return 1;
+        if(sth1[3]<sth2[3]) return -1;
+        break;
+    case 1:  // one pair
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        if(sth1[2]>sth2[2]) return 1;
+        if(sth1[2]<sth2[2]) return -1;
+        if(sth1[3]>sth2[3]) return 1;
+        if(sth1[3]<sth2[3]) return -1;
+        if(sth1[4]>sth2[4]) return 1;
+        if(sth1[4]<sth2[4]) return -1;
+        break;
+    case 0:  // high card
+        if(sth1[1]>sth2[1]) return 1;
+        if(sth1[1]<sth2[1]) return -1;
+        if(sth1[2]>sth2[2]) return 1;
+        if(sth1[2]<sth2[2]) return -1;
+        if(sth1[3]>sth2[3]) return 1;
+        if(sth1[3]<sth2[3]) return -1;
+        if(sth1[4]>sth2[4]) return 1;
+        if(sth1[4]<sth2[4]) return -1;
+        if(sth1[5]>sth2[5]) return 1;
+        if(sth1[5]<sth2[5]) return -1;
+        break;
+    default:
+        // printf("\n");
+        break;
+    }
+    return 0;  // two hands are same
 }
 
 
 // input a hand and piblic cards, 7 cards totally, output the strength of this hand to sth[6].
 void calutate_strength(char hand[2][2], char puCards[5][2], char sth[6])
 {
+    // reset b_sth[6]
+    memset(b_sth, 0, 6);
+
     // copy all cards together
     memcpy(allCards[0], hand[0], 2*2);
     memcpy(allCards[2], puCards[0], 5*2);
+    
+    // do 7-5 calculation
     do{
+        // set one combine
         memcpy(oneCom[0], allCards[n1], 2);
         memcpy(oneCom[1], allCards[n2], 2);
         memcpy(oneCom[2], allCards[n3], 2);
         memcpy(oneCom[3], allCards[n4], 2);
         memcpy(oneCom[4], allCards[n5], 2);
+        // calculate the strength and store them in t_sth
+        a_calc();
+
+        // compare to b_sth, if stronger replace it
+        if(compare(t_sth, b_sth) == 1)
+        {
+            memcpy(b_sth, t_sth, 6);
+        }
 
     }while(re_set7_5());
 
-
-    
+    // set result to sth[6]
+    memcpy(sth, b_sth, 6);
     return;
 }
 
