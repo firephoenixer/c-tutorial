@@ -96,9 +96,11 @@ void calculate_rate(char aHand[2][2][2])
         memcpy(public[3], re_cards[n4], 2);
         memcpy(public[4], re_cards[n5], 2);
         times++;
-    }while(1==re_set());
+    }while(re_set());
 
     printf("n1=%d, n2=%d, n3=%d, n4=%d, n5=%d\n", n1, n2, n3, n4, n5);
+    printf("Last public cards: %d%d, %d%d, %d%d, %d%d, %d%d\n", public[0][0], public[0][1], public[1][0], 
+            public[1][1], public[2][0], public[2][1], public[3][0], public[3][1], public[4][0], public[4][1]);
     printf("Total times: %d\n", times);
     printf("This end of calculating rate...\n");
     return;
