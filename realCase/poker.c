@@ -15,14 +15,14 @@ sth[0] = 0, High card        sth[1] sth[2] sth[3] sth[4] sth[5] High card to low
 
 
 
-// input a hand and piblic cards, 7 cards totally, output the strength of this hand.
-char *calutate_strength(char hand[2][2], char puCards[5][2])
+// input a hand and piblic cards, 7 cards totally, output the strength of this hand to sth[6].
+void calutate_strength(char hand[2][2], char puCards[5][2], char sth[6])
 {
-    char sth[7][5] = {0};
+    int i=0,n=0,m=0;
 
 
     
-    return sth;
+    return;
 }
 
 

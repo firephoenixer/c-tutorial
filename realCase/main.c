@@ -25,7 +25,7 @@ int main(){
     // reallocate the heal to save omit the idel space
     pHands = realloc(pHands, sizeof(char)*8*nHands);
 
-    // check the hands in the heal
+    // check the hands in the heap
     char (*paHands)[2][2][2] = (void *)pHands;
     for(int i = 0; i < nHands; i++)
     {
