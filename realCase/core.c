@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <string.h>
 extern void show_hands(char (*pArr)[][2], int n);
+extern void calutate_strength(char hand[2][2], char puCards[5][2], char sth[6]);
 
 // declare a array to represent all 52 poker cards
 static char cards[52][2] = 
@@ -11,6 +12,8 @@ static char cards[52][2] =
      {2,3},{3,3},{4,3},{5,3},{6,3},{7,3},{8,3},{9,3},{10,3},{11,3},{12,3},{13,3},{14,3}};
 static char re_cards[48][2] = {0};
 static char public[5][2] = {0};
+static char sth1[6] = {0};  // So if we have more players than 2, we should rewrite this code. Not diffcult.
+static char sth2[6] = {0};
 
 // generate a array cards witch store the cards havn't dealed. (48cards)
 void gen_re_cards(char dealed[2][2][2])
@@ -96,11 +99,21 @@ void calculate_rate(char aHand[2][2][2])
         memcpy(public[3], re_cards[n4], 2);
         memcpy(public[4], re_cards[n5], 2);
         times++;
+        // get the strength of these two hands
+        calutate_strength(aHand[0], public, sth1);
+        calutate_strength(aHand[2], public, sth2);
+
+        // compare the strength of these two hands
+
+
+
     }while(re_set());
 
     printf("n1=%d, n2=%d, n3=%d, n4=%d, n5=%d\n", n1, n2, n3, n4, n5);
     printf("Last public cards: %d%d, %d%d, %d%d, %d%d, %d%d\n", public[0][0], public[0][1], public[1][0], 
             public[1][1], public[2][0], public[2][1], public[3][0], public[3][1], public[4][0], public[4][1]);
+    printf("Strength of last hand1: %d%d%d%d%d%d\n", sth1[0],sth1[1],sth1[2],sth1[3],sth1[4],sth1[5]);
+    printf("Strength of last hand2: %d%d%d%d%d%d\n", sth2[0],sth2[1],sth2[2],sth2[3],sth2[4],sth2[5]);
     printf("Total times: %d\n", times);
     printf("This end of calculating rate...\n");
     return;
