@@ -31,7 +31,7 @@ int main(){
     for(int i = 0; i < nHands; i++)
     {
         printf("The %dst hand:\n", i);
-        show_hands(paHands[0], 2);
+        // show_hands(paHands[0], 2);
         // the core business function
         calculate_rate(paHands[0]);
 
