@@ -5,6 +5,7 @@
 extern void show_hands(char (*pArr)[][2], int n);
 extern void check_allo(void *pAdd);
 extern unsigned int read_hands(char *pHeal, char *pStrFile);
+extern void calculate_rate(char aHand[2][2][2]);
 
 int main(){
 
@@ -32,7 +33,7 @@ int main(){
         printf("The %dst hand:\n", i);
         show_hands(paHands[0], 2);
         // the core business function
-
+        calculate_rate(paHands[0]);
 
 
         paHands++;
