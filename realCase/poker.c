@@ -15,7 +15,7 @@ sth[0] = 0, High card        sth[1] sth[2] sth[3] sth[4] sth[5] High card to low
 */
 static char allCards[7][2]={0};  // set all cards together
 static char oneCom[5][2] = {0};  // store one possible
-static char b_sth[6] = {0};      // for back
+// static char b_sth[6] = {0};      // for back
 static char t_sth[6] = {0};      // for temp
 static char t_card[2] = {0};     // for switch 2 cards
 
@@ -67,7 +67,7 @@ int re_set7_5()
     return 0;  // represent the circulation is done
 }
 
-// order the five cards by descending
+// order the five cards by descending, seems dont use this function anymore
 void order_descending()
 {
     int i=0, j=1;
@@ -84,6 +84,7 @@ void order_descending()
     return;
 }
 
+// descend the 7 cards in stead will be more fast
 void order_des_all_cards()
 {
     int i=0, j=1;
@@ -101,7 +102,7 @@ void order_des_all_cards()
 }
 
 
-// calculate the 5 cards' strength
+// calculate the 5 cards' strength, store in t_sth7[6]
 void a_calc()
 {
     // order the five cards by descending
@@ -113,14 +114,17 @@ void a_calc()
      if(oneCom[0][0]==oneCom[1][0]||oneCom[1][0]==oneCom[2][0]||oneCom[2][0]==oneCom[3][0]||oneCom[3][0]==oneCom[4][0])
      {// must have same card, (at least one pair)
        // four of a kind
+       if(t_sth[0]>=7) return;
        if(oneCom[0][0]==oneCom[3][0]) {t_sth[0]=7; t_sth[1]=oneCom[3][0]; t_sth[2]=oneCom[4][0]; return;}
        if(oneCom[1][0]==oneCom[4][0]) {t_sth[0]=7; t_sth[1]=oneCom[4][0]; t_sth[2]=oneCom[0][0]; return;}
        // full horse 
+       if(t_sth[0]>=6) return;
        if(oneCom[0][0]==oneCom[2][0]&&oneCom[3][0]==oneCom[4][0])
        {t_sth[0]=6; t_sth[1]=oneCom[2][0]; t_sth[2]=oneCom[4][0]; return;}
        if(oneCom[0][0]==oneCom[1][0]&&oneCom[2][0]==oneCom[4][0])
        {t_sth[0]=6; t_sth[1]=oneCom[4][0]; t_sth[2]=oneCom[0][0]; return;}
        // three of a kind
+       if(t_sth[0]>=3) return;
        if(oneCom[0][0]==oneCom[2][0])
        {t_sth[0]=3; t_sth[1]=oneCom[2][0]; t_sth[2]=oneCom[3][0];  t_sth[3]=oneCom[4][0];return;}
        if(oneCom[1][0]==oneCom[3][0])
@@ -128,6 +132,7 @@ void a_calc()
        if(oneCom[2][0]==oneCom[4][0])
        {t_sth[0]=3; t_sth[1]=oneCom[4][0]; t_sth[2]=oneCom[0][0];  t_sth[3]=oneCom[1][0];return;}
        // two pairs
+       if(t_sth[0]>=2) return;
        if(oneCom[0][0]==oneCom[1][0]&&oneCom[2][0]==oneCom[3][0])
        {t_sth[0]=2; t_sth[1]=oneCom[1][0]; t_sth[2]=oneCom[3][0];  t_sth[3]=oneCom[4][0];return;}
        if(oneCom[0][0]==oneCom[1][0]&&oneCom[3][0]==oneCom[4][0])
@@ -135,6 +140,7 @@ void a_calc()
        if(oneCom[1][0]==oneCom[2][0]&&oneCom[3][0]==oneCom[4][0])
        {t_sth[0]=2; t_sth[1]=oneCom[2][0]; t_sth[2]=oneCom[4][0];  t_sth[3]=oneCom[0][0];return;}
        // one pair
+       if(t_sth[0]>=1) return;
        if(oneCom[0][0]==oneCom[1][0])
        {t_sth[0]=1; t_sth[1]=oneCom[1][0]; t_sth[2]=oneCom[2][0];  t_sth[3]=oneCom[3][0];t_sth[4]=oneCom[4][0];return;}
        if(oneCom[1][0]==oneCom[2][0])
@@ -147,9 +153,11 @@ void a_calc()
      else // do not have same card (M)
      {
       // straight
+      if(t_sth[0]>4) return;  // mustn't use >= , ex: A765432, A5432 test before 76543
       if(oneCom[0][0]==14&&oneCom[1][0]==5) {t_sth[0]=4; t_sth[1]=oneCom[1][0]; return;}
       if(oneCom[0][0]-oneCom[4][0]==4) {t_sth[0]=4; t_sth[1]=oneCom[0][0]; return;}
       // all left are high card
+      if(t_sth[1]>=2) return;  // this line should use index 1, because the initial value is 0
       t_sth[0]=0; t_sth[1]=oneCom[0][0]; t_sth[2]=oneCom[1][0]; t_sth[3]=oneCom[2][0]; 
       t_sth[4]=oneCom[3][0]; t_sth[5]=oneCom[4][0]; return;
      }
@@ -157,9 +165,11 @@ void a_calc()
     else  // all the same color
     {
      // straight flush
+     if(t_sth[0]>8) return;  // mustn't use >= , ex: A765432, A5432 test before 76543
       if(oneCom[0][0]==14&&oneCom[1][0]==5) {t_sth[0]=8; t_sth[1]=oneCom[1][0]; return;}
       if(oneCom[0][0]-oneCom[4][0]==4) {t_sth[0]=8; t_sth[1]=oneCom[0][0]; return;}
       // flush
+      if(t_sth[0]>=5) return;
       t_sth[0]=5; t_sth[1]=oneCom[0][0]; t_sth[2]=oneCom[1][0]; t_sth[3]=oneCom[2][0]; 
       t_sth[4]=oneCom[3][0]; t_sth[5]=oneCom[4][0]; return;
     }
@@ -256,8 +266,15 @@ int compare(char sth1[6], char sth2[6])
 // input a hand and piblic cards, 7 cards totally, output the strength of this hand to sth[6].
 void calutate_strength(char hand[2][2], char puCards[5][2], char sth[6])
 {
-    // reset b_sth[6]
-    memset(b_sth, 0, 6);
+    // // reset b_sth[6]
+    // memset(b_sth, 0, 6);
+    // // memset(t_sth, 0, 6);  // no necessary
+
+    // try to make the strength store in sth[6] derectly , maybe could run faster
+    // memset(sth, 0, 6);
+
+    // set t_sth[6] as a temp, maybe more safe
+    memset(t_sth, 0, 6);
 
     // copy all cards together
     memcpy(allCards[0], hand[0], 2*2);
@@ -283,15 +300,15 @@ void calutate_strength(char hand[2][2], char puCards[5][2], char sth[6])
         a_calc();
 
         // compare to b_sth, if stronger replace it
-        if(compare(t_sth, b_sth) == 1)
-        {
-            memcpy(b_sth, t_sth, 6);
-        }
+        // if(compare(t_sth, b_sth) == 1)
+        // {
+        //     memcpy(b_sth, t_sth, 6);
+        // }
 
     }while(re_set7_5());
 
-    // set result to sth[6]
-    memcpy(sth, b_sth, 6);
+    // set result t_sth[6] to sth[6]
+    memcpy(sth, t_sth, 6);
     return;
 }
 
