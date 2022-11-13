@@ -92,7 +92,7 @@ unsigned int read_hands(char *pHeal, char *pStrFile)
     
 
     fclose(fTxt);
-    printf("Hands read success: %d", n);
+    printf("Hands read success: %d\n", n);
     return n;
 }
 
