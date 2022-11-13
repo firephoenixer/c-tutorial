@@ -40,7 +40,7 @@ static unsigned short int n3 = 2;  // 0-45
 static unsigned short int n4 = 3;  // 0-46
 static unsigned short int n5 = 4;  // 0-47
 // make a new status of the index
-int re_set()
+int re_set()  // seems we can use 48,5 as a parameter to make this function more commonly useful
 {
     if(n5 < 47) 
     {
@@ -130,8 +130,8 @@ void calculate_rate(char aHand[2][2][2])
     // calculate the rate
     win1 = win1/times;
     win2 = win2/times;
-    printf("Player1 win rate: %.3f\n", win1);
-    printf("Player2 win rate: %.3f\n", win2);
+    printf("Player1 win rate: %.4f\n", win1);
+    printf("Player2 win rate: %.4f\n", win2);
     printf("----------------------------------------\n");
     return;
 }

@@ -84,13 +84,28 @@ void order_descending()
     return;
 }
 
+void order_des_all_cards()
+{
+    int i=0, j=1;
+    for(i=0; i<=5; i++)
+        for(j=i+1; j<=6; j++)
+            {
+                if(allCards[j][0] > allCards[i][0])
+                    {
+                        memcpy(t_card, allCards[i], 2);
+                        memcpy(allCards[i], allCards[j], 2);
+                        memcpy(allCards[j], t_card, 2);
+                    }
+            }
+    return;
+}
 
 
 // calculate the 5 cards' strength
 void a_calc()
 {
     // order the five cards by descending
-    order_descending();
+    // order_descending();  // no necessary now, had done before 7_5 loop
 
     // now, how to judge the strength of this combine?
     if(oneCom[0][1]!=oneCom[1][1]||oneCom[0][1]!=oneCom[2][1]||oneCom[0][1]!=oneCom[3][1]||oneCom[0][1]!=oneCom[4][1])
@@ -251,6 +266,9 @@ void calutate_strength(char hand[2][2], char puCards[5][2], char sth[6])
     // printf("show public: %d%d %d%d\n", allCards[2][0], allCards[2][1],allCards[3][0],allCards[3][1]);
     // printf("show public: %d%d %d%d\n", allCards[4][0], allCards[4][1],allCards[5][0],allCards[5][1]);
     // printf("show public: %d%d \n", allCards[6][0], allCards[6][1]);
+
+    // if we do descending 7 cards here, then we won't need do it in the next loop.
+    order_des_all_cards();
     
     // do 7-5 calculation
     n1 = 0; n2 = 1; n3 = 2; n4 = 3; n5 = 4;  // MUST reset them, because they are static in the memory!!!
